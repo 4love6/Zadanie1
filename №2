@@ -1,0 +1,25 @@
+namespace Num2
+{
+    class ProgramConfig
+    {
+        public const string AppVersion = "v2.1.0";
+        public const string AuthorName = "Студент 2-го курса";
+
+        public static void PrintAppDetails()
+        {
+            Console.WriteLine("Информация о конфигурации:");
+            Console.WriteLine($"Версия ПО: {AppVersion}");
+            Console.WriteLine($"Разработчик: {AuthorName}");
+        }
+    }
+
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            ProgramConfig.PrintAppDetails();
+
+            Console.ReadLine();
+        }
+    }
+}
