@@ -1,0 +1,67 @@
+namespace RoboFac
+{
+    interface IWorkable
+    {
+        void Work();
+    }
+
+    interface IChargeable
+    {
+        void Charge();
+    }
+
+    class Robot : IWorkable, IChargeable
+    {
+        public string Name { get; set; }
+        private int energy;
+
+        public int Energy
+        {
+            get => energy;
+            set
+            {
+                if (value < 0) energy = 0;
+                else if (value > 100) energy = 100;
+                else energy = value;
+            }
+        }
+
+        public Robot(string name, int initialEnergy)
+        {
+            Name = name;
+            Energy = initialEnergy;
+        }
+
+        public void Work()
+        {
+            Energy -= 20; 
+            Console.WriteLine($"Робот {Name} поработал. Энергия: {Energy}%");
+        }
+
+        public void Charge()
+        {
+            Energy += 50; 
+            Console.WriteLine($"Робот {Name} заряжается. Энергия: {Energy}%");
+        }
+    }
+
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Robot myRobot = new Robot("Tomatan", 60);
+
+            Console.WriteLine($"Старт: Робот {myRobot.Name}, Энергия {myRobot.Energy}%");
+            Console.WriteLine("--------------------------------------");
+
+            myRobot.Work();
+            myRobot.Work();
+
+            myRobot.Charge();
+
+            myRobot.Work();
+
+            Console.ReadKey();
+        }
+    }
+}
